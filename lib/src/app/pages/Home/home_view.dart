@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:task_list/src/app/pages/Home/home_controller.dart';
+import '../../../data/data_task_repository.dart';
 import '../Task/task_view.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class HomeView extends View {
+  static const routeName = '/';
+  @override
+  // ignore: no_logic_in_create_state
+  State<StatefulWidget> createState() => _HomeViewState(
+        HomeController(
+          DataTaskRepository(),
+        ),
+      );
+}
+
+class _HomeViewState extends ViewState<HomeView, HomeController>
+    with TickerProviderStateMixin {
+  _HomeViewState(
+    HomeController homeController,
+  ) : super(homeController);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('First Route'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('Open route'),
-          onPressed: () {
-            Navigator.pushNamed(context, '/task');
-          },
-        ),
-      ),
-    );
-  }
+  // TODO: implement view
+  Widget get view => throw UnimplementedError();
 }
