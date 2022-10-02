@@ -22,6 +22,60 @@ class _HomeViewState extends ViewState<HomeView, HomeController>
   ) : super(homeController);
 
   @override
-  // TODO: implement view
-  Widget get view => throw UnimplementedError();
+  // ignore: invalid_override_of_non_virtual_member
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget get view {
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Task List"),
+      ),
+      body: SafeArea(
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ControlledWidgetBuilder<HomeController>(
+            builder: (context, controller) {
+              return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Title",
+                    ),
+                  ));
+            },
+          ),
+          ControlledWidgetBuilder<HomeController>(
+            builder: (context, controller) {
+              return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Description",
+                    ),
+                  ));
+            },
+          ),
+          ControlledWidgetBuilder<HomeController>(
+            builder: (context, controller) {
+              return Center(
+                  child: ElevatedButton(
+                      onPressed: () {}, child: const Icon(Icons.add)));
+            },
+          ),
+        ],
+      )),
+    );
+  }
 }

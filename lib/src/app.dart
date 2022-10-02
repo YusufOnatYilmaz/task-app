@@ -10,7 +10,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => HomeView(),
+        HomeView.routeName: (context) => HomeView(),
         '/task': (context) => TaskView(),
       },
       theme: ThemeData(
