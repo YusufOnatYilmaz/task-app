@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:task_list/src/app/pages/Home/home_presenter.dart';
 import 'package:task_list/src/domain/entities/task.dart';
@@ -23,7 +21,13 @@ class HomeController extends Controller {
     };
   }
 
-  void create_task(Task task) {
+  void createTask(Task task) {
     _presenter.createTask(task);
+  }
+
+  @override
+  void onDisposed() {
+    _presenter.dispose(); // don't forget to dispose of the presenter
+    super.onDisposed();
   }
 }

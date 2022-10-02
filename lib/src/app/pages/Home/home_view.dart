@@ -89,7 +89,7 @@ class _HomeViewState extends ViewState<HomeView, HomeController>
                             ["1", "2"],
                             "2",
                             "2");
-                        controller.create_task(task);
+                        controller.createTask(task);
                       },
                       child: const Icon(Icons.add)));
             },
