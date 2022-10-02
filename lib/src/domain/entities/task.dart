@@ -1,7 +1,7 @@
 class Task {
   final String id;
   final String title;
-  final String? description;
+  final String description;
   final List<String> type;
   final String status;
   final String emergency;
@@ -23,7 +23,7 @@ class Task {
         emergency = data['emergency'];
 
   @override
-  String toString() => title;
+  String toString() => title + description;
 
   Map<String, dynamic> toMap(Task task) {
     return {

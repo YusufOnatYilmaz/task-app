@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:task_list/src/app/pages/Home/home_controller.dart';
 import '../../../data/data_task_repository.dart';
+import '../../../domain/entities/task.dart';
 import '../Task/task_view.dart';
 
 class HomeView extends View {
@@ -21,14 +22,21 @@ class _HomeViewState extends ViewState<HomeView, HomeController>
     HomeController homeController,
   ) : super(homeController);
 
+  late TextEditingController _textEditingControllerTitle;
+  late TextEditingController _textEditingControllerDescription;
+
   @override
   // ignore: invalid_override_of_non_virtual_member
   void initState() {
+    _textEditingControllerTitle = TextEditingController();
+    _textEditingControllerDescription = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
+    _textEditingControllerTitle.dispose();
+    _textEditingControllerDescription.dispose();
     super.dispose();
   }
 
@@ -52,6 +60,7 @@ class _HomeViewState extends ViewState<HomeView, HomeController>
                       border: OutlineInputBorder(),
                       hintText: "Title",
                     ),
+                    controller: _textEditingControllerTitle,
                   ));
             },
           ),
@@ -64,6 +73,7 @@ class _HomeViewState extends ViewState<HomeView, HomeController>
                       border: OutlineInputBorder(),
                       hintText: "Description",
                     ),
+                    controller: _textEditingControllerDescription,
                   ));
             },
           ),
@@ -71,7 +81,17 @@ class _HomeViewState extends ViewState<HomeView, HomeController>
             builder: (context, controller) {
               return Center(
                   child: ElevatedButton(
-                      onPressed: () {}, child: const Icon(Icons.add)));
+                      onPressed: () {
+                        Task task = Task(
+                            controller.counter.toString(),
+                            _textEditingControllerTitle.text,
+                            _textEditingControllerDescription.text,
+                            ["1", "2"],
+                            "2",
+                            "2");
+                        controller.create_task(task);
+                      },
+                      child: const Icon(Icons.add)));
             },
           ),
         ],
