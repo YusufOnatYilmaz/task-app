@@ -11,8 +11,10 @@ class HomeController extends Controller {
     TaskRepository taskRepository,
   ) : _presenter = HomePresenter(taskRepository);
 
-  int _counter = 0;
-  int get counter => _counter;
+  String _statusValue = "Not Started";
+  String get statusValue => _statusValue;
+  String _emergencyValue = "Critical";
+  String get emergencyValue => _emergencyValue;
 
   @override
   void initListeners() {
@@ -23,6 +25,16 @@ class HomeController extends Controller {
 
   void createTask(Task task) {
     _presenter.createTask(task);
+  }
+
+  void statusSet(String statusVal) {
+    _statusValue = statusVal;
+    refreshUI();
+  }
+
+  void emergencySet(String emergencyVal) {
+    _emergencyValue = emergencyVal;
+    refreshUI();
   }
 
   @override

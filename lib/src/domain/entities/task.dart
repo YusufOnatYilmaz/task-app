@@ -23,7 +23,7 @@ class Task {
         emergency = data['emergency'];
 
   @override
-  String toString() => title + description;
+  String toString() => title;
 
   Map<String, dynamic> toMap(Task task) {
     return {

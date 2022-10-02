@@ -11,7 +11,7 @@ class DataTaskRepository implements TaskRepository {
   Future<void> createTask(Task task) async {
     try {
       tasks.add(task);
-      print(tasks);
+      print(task.toMap(task));
     } catch (e) {
       print(e);
       rethrow;
